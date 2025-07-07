@@ -8,7 +8,7 @@ import { CiCircleInfo } from "react-icons/ci";
 
 
 
-const UsersTable = () => {
+const UserTable = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [searchUser, setSearchUser] = useState('');
@@ -332,4 +332,4 @@ const UsersTable = () => {
     );
 };
 
-export default UsersTable;
+export default UserTable;
