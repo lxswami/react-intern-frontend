@@ -11,7 +11,7 @@ const Login = lazy(() => import("./Pages/Login"));
 const Register = lazy(() => import("./Pages/Register"));
 const Dashboard = lazy(() => import("./Pages/Dashboard"));
 const Contact = lazy(() => import("./Pages/Contact"));
-const UsersTable = lazy(() => import("./Pages/userTable"));
+const UsersTable = lazy(() => import("./Pages/UsersTable"));
 const UserFullDetails = lazy(() => import("./Pages/UserFullDetail"));
 
 const App = () => {

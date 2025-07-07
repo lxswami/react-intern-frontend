@@ -7,7 +7,8 @@ import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
-import UsersTable from "./Pages/userTable";
+import UsersTable from "./Pages/UsersTable";
+import UserFullDetails from "./Pages/UserFullDetail";
 
 export const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/userFullDetail",
-                element: <UsersTable />,
+                element: <UserFullDetails />,
             },
         ],
     },
