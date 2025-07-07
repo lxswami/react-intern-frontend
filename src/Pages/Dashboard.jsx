@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Axios } from '../AxiosProvider';
 import {
   FaUser,
   FaChartBar,
@@ -8,8 +9,10 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import ChartComponent from "../components/ChartComponent";
 
 const Dashboard = () => {
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -20,7 +23,24 @@ const Dashboard = () => {
     const email = localStorage.getItem("email") || "User_email";
     setUsername(name);
     setUserEmail(email);
+
+
+    const fetchUsers = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await Axios.get('/users', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setUsers(response.data.users);
+      } catch (error) {
+        console.error('Error fetching users in dashboard:', error);
+      }
+    };
+
+    fetchUsers();
   }, []);
+
+
 
   const handleLogout = () => {
     localStorage.clear();
@@ -94,18 +114,15 @@ const Dashboard = () => {
         </header>
 
         {/* Content body */}
+       
+
         <main className="p-4 md:p-6 flex-1 overflow-y-auto">
           <div className="bg-white rounded-xl shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4">Analytics Overview</h2>
-            <div className="bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
-              <img
-                className="rounded-lg object-cover w-full h-60 sm:h-80"
-                src="https://plus.unsplash.com/premium_photo-1720287601920-ee8c503af775?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Analytics"
-              />
-            </div>
+            <ChartComponent users={users} />
           </div>
         </main>
+
       </div>
     </div>
   );
